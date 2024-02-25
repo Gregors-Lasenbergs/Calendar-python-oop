@@ -1,0 +1,284 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{inputenc, hyperref, graphicx, listings}
+
+\title{\textbf{assignment7}}
+\author{Gregors Lasenbergs (s1075747)}
+\date{\today}
+
+\begin{document}
+  \maketitle
+  \tableofcontents
+
+\section{Introduction}
+  The program I made is a calendar to which you can add and remove events, add a description of the event, specify start and end time for the event. This calendar automatically detects current year and always displays today's date and points out which dates has an event in them. As a default some events are already added, like Christmas, Halloween or New Year. And most importantly every time you close the program all the newly added events will be saved in "events.txt" file
+  
+  In this program it is also possible to adjust settings. You can change the indicator for today's date or change the indicator for days with events in them. In the setting section it is also possible to choose sorting method for the calendar.
+
+\section{Guide}
+Before you start the program please make sure that there exists "events.txt" file in the same folder as "UI.py" is. Otherwise there will be no place to save the events and errors will occur.
+    \subsection{Main functions}
+    \subsubsection{Events}
+    As a default today's date will always be indicated with "\#" symbol and a day with event will be indicated with "!" symbol, but you can change that once you open open the program. When you start the "assignment7.py" first thing you will see is the menu: if you want to see the calendar you have to type out the command "open calendar" or you can just simply write number "1":
+    
+    
+ \begin{verbatim}   
+----------------------------
+    Commands:
+            1) Open calendar
+            2) Settings
+            3) Quit
+            
+Please choose a command: 1
+----------------------------
+ \end{verbatim}   
+ 
+ Now you will see the full calendar with all the months printed like this and little indicator next to few dates:
+ 
+  \begin{verbatim}
+----------------------------
+        MARCH   			 	
+Mon Tue Wed Thu Fri Sat Sun	 	
+    1   2   3   4   5   6	 	
+7   8!  9   10  11  12  13	 	
+14  15  16  17  18  19  20	 	
+21  22  23  24  25  26  27	 	
+28  29# 30  31	
+----------------------------
+     \end{verbatim}
+     
+Also new commands for the new page will be displayed:
+
+  \begin{verbatim}
+------------------------------
+Commands:
+        1) See events in a day
+        2) Add event
+        3) Add task list
+        4) Complete task
+        5) Delete event
+        6) Back
+                    
+Please choose a command: 
+------------------------------
+     \end{verbatim}
+     
+Adding a new event would look something like this:
+
+      \begin{verbatim}
+------------------------------------------------------------------
+Commands:
+        1) See events in a day
+        2) Add event
+        3) Add task list
+        4) Complete task
+        5) Delete event
+        6) Back
+                    
+Please choose a command: 2
+Which month is this event or task list happening? (1-12): 7
+Which day is this event or task list happening? (1-31): 31
+Enter name of the event: My birthday
+Enter description about the event: The biggest party in the world
+Input start time for the event (24:00): 21:00
+Input end time for the event (24:00): 23:59
+------------------------------------------------------------------
+     \end{verbatim}
+
+You can see that the program automatically recommend correct options for days. Also if you try to input incorrect/unsupported data, the program will recognize it and ask you to input the data again. So you don't have to worry about the program crashing.
+
+Now if we have forgotten the start time of my epic birthday party we can use first command "See event in a day". That would look something like this:
+\begin{verbatim}
+--------------------------------------------------------------------
+Commands:
+        1) See events in a day
+        2) Add event
+        3) Add task list
+        4) Complete task
+        5) Delete event
+        6) Back
+                    
+Please choose a command: 1
+*Prints calendar, so that you can see which days have events in them*
+Which month is this event or task list happening? (1-12): 7
+Which day is this event or task list happening? (1-31): 31
+
+My birthday
+Description: The biggest party in the world!
+Start time: 21:00
+End time: 23:59
+Duration: 2h 59min
+--------------------------------------------------------------------
+     \end{verbatim}
+If you now will close the program and open it again you will see that "My birthday" is still saved in the calendar
+
+    \subsubsection{Task Lists}
+It is also possible to add a task list to your calendar. Task list is similar to the event, but for task list you have only name of the task list and tasks. Every time you create a task list a default start time with 00:00 and end time 23:59 will be added. There can only be one task list in a day. To add a task list:
+\begin{verbatim}
+------------------------------------------------------------
+Commands:
+        1) See events in a day
+        2) Add event
+        3) Add task list
+        4) Complete task
+        5) Delete event
+        6) Back
+                    
+Please choose a command: 3
+Which month is this event or task list happening? (1-12): 7
+Which day is this event or task list happening? (1-31): 31
+Enter name of the task list: Party planning !!!
+How many tasks you want to add?: 3
+Please enter the name of the task 1: Invite people
+Please enter the name of the task 2: Buy drinks
+Please enter the name of the task 3: Plan cool activities
+------------------------------------------------------------
+\end{verbatim}
+Now if we want to complete one of the tasks we go to complete task command:
+\begin{verbatim}
+------------------------------------------------------------
+Commands:
+        1) See events in a day
+        2) Add event
+        3) Add task list
+        4) Complete task
+        5) Delete event
+        6) Back
+                    
+Please choose a command: 4
+Which month is this event or task list happening? (1-12): 7
+Which day is this event or task list happening? (1-31): 31
+Please enter the name of the task: buy drinks
+Task done!
+------------------------------------------------------------
+\end{verbatim}
+
+Let's check out what actually changed in the task list:
+\begin{verbatim}
+------------------------------------------------------------
+Commands:
+        1) See events in a day
+        2) Add event
+        3) Add task list
+        4) Complete task
+        5) Delete event
+        6) Back
+                    
+Please choose a command: 1
+*Prints calendar*
+Which month is this event or task list happening? (1-12): 7
+Which day is this event or task list happening? (1-31): 31
+
+My birthday
+Description: The biggest party in the world!
+Start time: 21:00
+End time: 23:59
+Duration: 2h 59min
+
+Party planning !!!
+Tasks: 
+	1) invite people
+	2) buy drinks [done]
+	3) plan cool activities
+------------------------------------------------------------
+\end{verbatim}
+Cool now we can see that the task "buy drinks" is done!
+
+    \subsection{Settings}
+If you go back to the main menu you will see that there is also a settings page, if we go there:
+\begin{verbatim}
+-----------------------------------------
+Commands:
+            1) Open calendar
+            2) Settings
+            3) Quit
+            
+Please choose a command: 2
+Commands:
+        1) Change today's date indicator
+        2) Change event day indicator
+        3) Sorting
+        4) Back
+                    
+Please choose a command: 
+-----------------------------------------
+\end{verbatim}        
+
+We now see 3 settings that you can change. Let's start with the first two and change the event day indicator:
+\begin{verbatim}
+-------------------------------------------
+Commands:
+        1) Change today's date indicator
+        2) Change event day indicator
+        3) Sorting
+        4) Back
+
+Please choose a command: 2
+Please enter a symbol with length 1: @event
+Please a enter symbol with length 1: E
+-------------------------------------------
+\end{verbatim}     
+You can see that it is only allowed to use indicator with length of 1 character. That's why the program asks for an input again. Now let's try to use sorting:
+\begin{verbatim}
+-----------------------------------------
+Commands:
+        1) Change today's date indicator
+        2) Change event day indicator
+        3) Sorting
+        4) Back
+                    
+Please choose a command: 3
+Sort by:
+        1) Name
+        2) Description
+        3) Duration
+        4) Start time
+        5) Back
+                    
+Please choose a command: 3
+-----------------------------------------
+\end{verbatim}
+    
+    If you now go to calendar page and look for events in a date 07/25 (25th July) you will see that the events are listed from the smallest duration at the top until the largest duration time in the bottom:
+    
+\begin{verbatim}
+------------------------------------------------
+Commands:
+        1) See events in a day
+        2) Add event
+        3) Delete event
+        4) Back
+                    
+Please choose a command: 1
+*prints calendar*
+Which month is this event happening? (1-12): 7
+Which day is this event happening? (1-31): 25
+
+D
+Description: C
+Start time: 15:00
+End time: 15:30
+Duration: 30min
+
+A
+Description: B
+Start time: 12:00
+End time: 13:00
+Duration: 1h
+
+C
+Description: D
+Start time: 18:00
+End time: 19:00
+Duration: 1h
+
+B
+Description: C
+Start time: 10:00
+End time: 12:00
+Duration: 2h
+------------------------------------------------
+\end{verbatim}    
+
+If you want to sort the events by any other parameters you can go back to settings and change the way of sorting.
+
+\end{document}
